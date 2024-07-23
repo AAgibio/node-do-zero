@@ -15,6 +15,13 @@ server.get('/videos', async (request) => {
     return videos
 })
 
+server.get('/videos/:id', async (request) => {
+    const searchById = request.params.id
+
+    const videos = await database.listByID(searchById)
+    
+    return videos
+})
 
 server.post('/videos', async (request, reply) => {
     const { title, description, duration } = request.body
@@ -53,5 +60,5 @@ server.delete('/videos/:id', (request, reply) => {
 
 server.listen({
     host: '0.0.0.0',
-    port: process.env.PORT ?? 3333
+    port: process.env.PORT ?? 3232
 })

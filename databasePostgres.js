@@ -7,13 +7,24 @@ export class DatabasePostgres {
     async list(search) {
         let videos
 
-
         if (search) {
             videos = await sql`select * from videos where title ilike ${'%' + search + '%'}`
         } else {
             videos = await sql`select * from videos`
         }
 
+        return videos
+    }
+
+    async listByID(searchID) {
+        let videos
+        
+        if (searchID) {
+            videos = await sql`select * from videos where id ilike ${'%' + searchID + '%'}`
+        } else {
+            videos = await sql`select * from videos`
+        }
+        
         return videos
     }
 
